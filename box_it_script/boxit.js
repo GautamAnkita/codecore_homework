@@ -89,9 +89,7 @@ function drawLine(num){
     return(line_unicode.repeat(num));
 }
 
-console.log(boxIt(['Jon Snow', 'Cersei Lannister']));
-console.log(boxIt(['Jon Snow']));
-console.log(boxIt([]));
+console.log(boxIt(args));
 
 
 
