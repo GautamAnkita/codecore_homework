@@ -6,14 +6,50 @@ const args = process.argv.slice(2);
 let num = parseInt(args[0]);
 
 const line_unicode = '\u2501';
+const top_corner_left_unicode ='\u250F'
+const top_corner_right_unicode ='\u2513'
+const middle_line_left_unicode = '\u2523'
+const middle_line_right_unicode = '\u252B'
+const bottom_corner_left_unicode = '\u2517'
+const bottom_corner_right_unicode = '\u251B'
 
-/*Function that takes a number as an argument 
+/*
+ Function that takes a length as an input and 
+ returns a top border including the line of the 
+ given length.
+*/
+function drawTopBorder(num){
+   return(top_corner_left_unicode + drawLine(num)+  top_corner_right_unicode);
+}
+
+/*
+Function that takes a length as an input and 
+returns a middle border including the line of the 
+given length.
+*/
+function drawMiddleBorder(num){
+    return(middle_line_left_unicode+ drawLine(num)+ middle_line_right_unicode);
+}
+
+/*
+Function that takes a length as an input and 
+returns a bottom border including the line of 
+the given length.
+*/
+function drawBottomBorder(num){
+    return(bottom_corner_left_unicode+ drawLine(num) + bottom_corner_right_unicode);
+}
+
+/*Function that take a number as an argument 
 that returns that number of horizontal bars 
 (i.e. ━) as a string.
 */
- 
 function drawLine(num){
     return(line_unicode.repeat(num));
 }
 
-console.log(drawLine(num));
+console.log(drawTopBorder(num));
+console.log(drawMiddleBorder(num));
+console.log(drawBottomBorder(num));
+
+
