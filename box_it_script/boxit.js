@@ -12,6 +12,7 @@ const middle_line_left_unicode = '\u2523'
 const middle_line_right_unicode = '\u252B'
 const bottom_corner_left_unicode = '\u2517'
 const bottom_corner_right_unicode = '\u251B'
+const vertical_bar_unicode = '\u2503'
 
 /*
  Function that takes a length as an input and 
@@ -39,6 +40,12 @@ the given length.
 function drawBottomBorder(num){
     return(bottom_corner_left_unicode+ drawLine(num) + bottom_corner_right_unicode);
 }
+/*
+Function that takes a string, surrounds it with vertical lines and then returns it.
+*/ 
+function drawBarsAround(str){
+    return (vertical_bar_unicode + str + vertical_bar_unicode);
+}
 
 /*Function that take a number as an argument 
 that returns that number of horizontal bars 
@@ -51,5 +58,7 @@ function drawLine(num){
 console.log(drawTopBorder(num));
 console.log(drawMiddleBorder(num));
 console.log(drawBottomBorder(num));
-
+console.log(drawBarsAround("My name is Dan")); // returns "┃My name is Dan┃"
+console.log(drawBarsAround("You are Jane  ")); // returns "┃You are Jane  ┃"
+console.log(drawBarsAround("  You are Bill"));// returns "┃  You are Bill┃"
 
