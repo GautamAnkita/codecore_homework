@@ -12,6 +12,11 @@ class Turtle{
         this.currDir = 0; 
     }
 
+    /*
+    This function takes no. of steps the turtle will move forward.
+    Depending on the current direction, the path traversed by the
+    turtle will be added to the allPointsArr.
+    */
     forward(steps){
         for(let i=1; i<= steps; i++){
             if(this.currDir === 0){
@@ -34,6 +39,7 @@ class Turtle{
         return this;
     }
 
+    //This function prints the grid and the path traversed by the turtle.
     print(){
         let result = "";
         for(let i = 0; i <=  this.gridSize; i++ ){
@@ -47,14 +53,21 @@ class Turtle{
             result+="\n";
         }
         console.log(result);
-        return this;
     }
 
+    /*
+    This function checks whether the given location (x,y) is part of the
+    path traversed by the turtle.
+    */
     doesLocExist(loc){
         return (this.allPointsArr.some(element => 
             (element[0]=== loc[0] && element[1] === loc[1])));
     }
 
+    /*
+    This function changes the current direction of the turtle when it turns
+    right.
+    */
     right(){
         if(this.currDir === 3){
             this.currDir = 0;
@@ -64,6 +77,10 @@ class Turtle{
         return this;
     }
 
+    /*
+    This function changes the current direction of the turtle when it turns
+    left.
+    */
     left(){
         if(this.currDir === 0){
             this.currDir = 3;
@@ -73,6 +90,10 @@ class Turtle{
         return this;
     }
 
+    /*
+    This function returns the array containing the locations traversed by the
+    turtle.
+    */
     allPoints(){
         return this.allPointsArr;
     }
