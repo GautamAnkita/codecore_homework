@@ -1,9 +1,9 @@
 class Turtle{
     constructor(x, y){
-        this.x = x;
-        this.y = y;
-        this.startLoc = [this.x , this.y];
-        this.endLoc = [this.x , this.y];
+        this.startLoc = [x , y];
+        this.endLoc = [x , y];
+        this.allPointsArr = [[x,y]];
+
         /*
          0 will point to east, 1 will point to south, 2 will point to west
          and 3 will point to north as per the right angle directions.
@@ -12,17 +12,20 @@ class Turtle{
     }
 
     forward(steps){
-        if(this.currDir === 0){
-            this.endLoc[0] = this.endLoc[0] + steps;
-        }
-        else if(this.currDir === 1){
-            this.endLoc[1] = this.endLoc[1] + steps;
-        }
-        else if(this.currDir === 2){
-            this.endLoc[0] = this.endLoc[0] - steps;
-        }
-        else{
-            this.endLoc[1] = this.endLoc[1] - steps;
+        for(let i=1; i<= steps; i++){
+            if(this.currDir === 0){
+                this.endLoc[0] = this.startLoc[0] + i;
+            }
+            else if(this.currDir === 1){
+                this.endLoc[1] = this.startLoc[1] + i;
+            }
+            else if(this.currDir === 2){
+                this.endLoc[0] = this.startLoc[0] - i;
+            }
+            else{
+                this.endLoc[1] = this.startLoc[1] - i;
+            }
+            this.allPointsArr.push([this.endLoc[0], this.endLoc[1]]);
         }
         return this;
     }
@@ -49,9 +52,13 @@ class Turtle{
         }
         return this;
     }
+
+    allPoints(){
+        return this.allPointsArr;
+    }
+
 }
 
-const flash1 = new Turtle(0, 0).forward(3).right().forward(2);
-flash1.print();
-const flash2 = new Turtle(0, 4).forward(3).left().forward(3);
-flash2.print();
+const flash = new Turtle(0, 4).forward(3).left().forward(3);
+console.log(flash.allPoints());
+
