@@ -1,13 +1,12 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,8 +18,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Custom middleware
+app.use((request, response, next) => {
+	const userName = request.cookies.userName;
+	response.locals.userName = "";
+	if (userName) {
+		// This initializes a variable called `todoList` which will be available to
+		// all of the views. The variable `todoList` is assigned the value of the
+		// `cookies.todoList` array
+		response.locals.userName = userName;
+	}
+
+	// The middleware is finished. Go on to next middleware and/or route
+	next();
+});
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
