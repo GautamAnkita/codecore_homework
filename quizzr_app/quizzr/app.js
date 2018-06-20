@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
+const quizRouter = require('./routes/quiz');
 
 const app = express();
 
@@ -23,17 +24,13 @@ app.use((request, response, next) => {
 	const userName = request.cookies.userName;
 	response.locals.userName = "";
 	if (userName) {
-		// This initializes a variable called `todoList` which will be available to
-		// all of the views. The variable `todoList` is assigned the value of the
-		// `cookies.todoList` array
 		response.locals.userName = userName;
 	}
-
-	// The middleware is finished. Go on to next middleware and/or route
 	next();
 });
 
 app.use('/', indexRouter);
+app.use('/quiz', quizRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

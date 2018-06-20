@@ -7,6 +7,19 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Welcome <%= userName %></h1>
+        <form action="/quiz" method="post">
+            <h1>Welcome <%= userName %></h1>
+            <ol>
+                <% quizQuestions.forEach(ques => { %>
+                <li>
+                <h3><%= ques.title %></h3>
+                    <% for(let i=0; i<ques.options.length; i++) {%>
+                        <input type=<%= ques.type %> name=<%= ques.id %> value=<%= ques.options[i] %>><%= ques.options[i] %><br>
+                    <% } %>
+                </li>
+                <% }) %>
+            </ol>
+            <button type="submit" name="button">Submit</button>
+        </form>
     </body>
 </html>

@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -11,8 +11,8 @@ router.post('/', (request, response) => {
   const userName = request.body.userName;
   if(userName){
     response.cookie('userName', userName);
-    response.render('quiz', {'userName': userName});
-  }else{
+    response.redirect('/quiz');
+  } else {
     response.redirect('/');
   }
 });
