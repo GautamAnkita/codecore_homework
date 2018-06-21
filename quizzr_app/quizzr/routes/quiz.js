@@ -40,6 +40,7 @@ router.get('/result', function(req, res, next) {
 });
 
 router.post('/', (request, response) => {
+
     //Get the parameters/values that were submitted by the form
     const quizQuestions = quizQuestionsAns.quizQuestions;
     const quizAnswers = quizQuestionsAns.quizAnswer;
@@ -51,12 +52,20 @@ router.post('/', (request, response) => {
     quizQuestions.forEach(ques => {
         const name = ques.id;
         const userAns = request.body[name];
-        if(userAns.toString() === quizAnswers[i++].toString()){
-            marks+= 1;
+        if(userAns === undefined){
+            response.redirect('/quiz')
         }
+        // userAns_arr = (userAns.toString()).split("");
+        // console.log(userAns_arr);
+            if(userAns.toString() === quizAnswers[i++].toString()){
+                marks+= 1;
+            }
+        
+        
     });
     percentageGrade = ((marks/totalQuestions)* 100).toFixed(2);
     
+        // switch (myVariable) {
         switch (true) {
             case (percentageGrade < 20):
                 letterGrade = 'F';

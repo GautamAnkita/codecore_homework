@@ -14,7 +14,11 @@
                 <li>
                 <h3><%= ques.title %></h3>
                     <% for(let i=0; i<ques.options.length; i++) {%>
-                        <input type=<%= ques.type %> name="<%= ques.id %>" value="<%= ques.options[i] %>"><%= ques.options[i] %><br>
+                        <input type=<%= ques.type %> name="<%= ques.id %>" value="<%= ques.options[i] %>" id="<%= ques.id %>_<%= ques.options[i] %>">
+                        <label for="<%= ques.id %>_<%= ques.options[i] %>">
+                            <%= ques.options[i] %>
+                        </label>
+                        <br>
                     <% } %>
                 </li>
                 <% }) %>
@@ -23,3 +27,5 @@
         </form>
     </body>
 </html>
+
+ 
