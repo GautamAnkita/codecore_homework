@@ -1,0 +1,34 @@
+<%- include("./partials/header") %>
+<br>
+<div class="row">
+  <div class="col-md-12 jobs_index_middle_panels">
+    
+            <% cohort.forEach(rt => { %>
+            <div class="card mb-3">
+            <div class="card-body">
+            <img width="50px" class="rounded-circle" src="<%= rt.logoUrl %>" alt="">
+            <h3 class="card-title"><%= rt.team_name %></h3>
+
+            <h6 class= "card-subtitle mb-2 text-muted"><%= rt.members_name.split().join(", ") %></h6>
+
+        <form action="/cohorts/<%=rt.id%>" method="GET">
+        <button class="btn btn-primary" type="submit" name="button">Show cohort</button>
+        </form>
+        </div>
+    </div>
+            <% }) %>
+      
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<%- include("./partials/footer") %>

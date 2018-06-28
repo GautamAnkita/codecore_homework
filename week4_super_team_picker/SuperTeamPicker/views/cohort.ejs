@@ -1,0 +1,64 @@
+<%- include("./partials/header") %>
+        <% let quantValue=""%>
+        <%if(locals.quantity) {%>
+            <% quantValue = locals.quantity;%>
+        <% } %>
+
+        <% let check1=""%>
+        <% let check2=""%>
+        <%if(locals.method==="tcmethod") {%>
+            <% check1="checked"%>
+        <% } else if(locals.method==="nptmethod") {%>
+            <% check2="checked"%>
+        <% }%>
+
+<div class="col-md-12 jobs_index_middle_panels">
+    <div class="card">
+        <form action="/cohorts/<%=cohort.id%>" method="GET">
+            <div class="card-body">
+                <h2 class="card-title"><%= cohort.team_name %></h2>
+                <h6 class="card-subtitle mb-2 text-muted"><%= cohort.members_name.split(",").join(", ") %></h2>
+                <hr>
+                <h6 class="card-title">Method</h3>
+                <input type="radio" name="method" value="tcmethod" id="tc" <%=check1%>>
+                <label for="tc">Team Count</label><br>
+                <input type="radio" name="method" value="nptmethod" id="npt" <%=check2%>>
+                <label for="npt">Number Per Team</label><br>
+            </div>
+            <div class="card-body">
+                <label for="qty">Quantity</label>
+                <div class="input-group mb-4">
+                    <input type="number" min="1" max="<%= cohort.members_name.split(",").length %>" name="qty" value="<%=quantValue%>" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                </div>
+                <div class="input-group mb-2">
+                    <button type="submit" name="button" class="btn btn-outline-primary col-12">Assign Teams</button>
+                </div>
+            </div>    
+
+            <%if(locals.result) {%>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Members</th>
+                        </tr>
+                    </thead>        
+                    <tbody>
+                    <% let i = 1; %>
+                    <% result.forEach(rt => { %>
+                        <tr>
+                            <th scope="row"><%= i %></th>
+                            <td><%= rt.join(", ") %></td>
+                            <% i=i+1; %>
+                        </tr>
+                    <% }) %>
+                    </tbody>
+                </table> 
+            </div>    
+            <% } %>
+        </form>
+    </div>
+</div>
+
+<%- include("./partials/footer") %>
