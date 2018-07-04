@@ -1,0 +1,15 @@
+<div class="mx-3">
+<%= form_for(@post) do |p| %>
+    <div>
+        <%= p.label(:title) %>
+        <%= p.text_field :title, class: "form-control mb-3"%>
+    </div>
+
+    <div>
+        <%= p.label(:body) %>
+        <%= p.text_area :body, class: "form-control mb-3"%>
+    </div>
+
+    <%= p.submit class: "btn btn-outline-primary" %>
+<% end %>
+</div>
